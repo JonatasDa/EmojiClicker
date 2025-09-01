@@ -45,3 +45,50 @@ body{
     border-radius: 10px;
     flex-grow: 1;
 }
+
+.emoji{
+    position: absolute;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.emoji.clicado{
+    transform: scale(1.2);
+}
+
+#lista-historico{
+    list-style-type: none;
+    padding: 0;
+    margin: 10px;
+    max-width: 400px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#lista-historico li{
+    padding: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+#lista-historico li.zoeiro{
+    color: red;
+    font-weight: bold;
+}
+
+@media (max-width: 600px){
+    #game-area{
+        max-width: 100%;
+    }
+    #header h1{
+        font-size: 20px;
+    }
+    #pontos{
+        font-size: 18px;
+    }
+}
