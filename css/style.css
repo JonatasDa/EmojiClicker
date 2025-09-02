@@ -14,7 +14,7 @@ body{
     touch-action: manipulation;  */
 }
 
-#header{
+#cabecalho{
     background-color: rgb(255, 116, 243);
     width: 100%;
     padding: 10px;
@@ -22,13 +22,13 @@ body{
     box-shadow: 0 3px 6px rgba(255, 116, 243, 1);
 }
 
-#header h1{
+#cabecalho h1{
     margin: 0;
     font-size: 24px;
     color: #ffffff;
 }
 
-#header p, h2{
+#cabecalho p, h2{
     color: #ffffff;
 }
 
@@ -38,7 +38,7 @@ body{
     color: white;
 }
 
-#game-area{
+#area-jogo{
     width: 100%;
     min-width: 400px;
     background-color: #7c7c7c;
@@ -85,7 +85,7 @@ body{
     #game-area{
         max-width: 100%;
     }
-    #header h1{
+    #cabecalho h1{
         font-size: 20px;
     }
     #pontos{
