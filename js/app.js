@@ -1,8 +1,12 @@
 const areaJogo = document.querySelector('#area-jogo');
 const pontosDisplay = document.querySelector('#pontos');
 const listaHistorico = document.querySelector('#lista-historico');
+const recordeDisplay = document.querySelector('#recorde')
+const resetBtn = document.querySelector('#reset-btn')
 
 let pontos = 0;
+let recorde = localStorage.getItem('recorde') ? parseInt(localStorage.getItem('recorde')) : 0;
+
 const emojis = ['😺', '🐶', '🚀', '🍕', '🦁', '🌮'];
 const mensagensZoeiras = [
     'to mt felizinho, sou o principinho',
@@ -39,11 +43,30 @@ function criarEmoji() {
     emoji.style.left = `${Math.random() * maxX}px`;
     emoji.style.top = `${Math.random() * maxY}px`;
 
+    function atualizarRecorde(){
+        if(pontos > recorde){
+            recorde = pontos;
+            localStorage.setItem('recorde', recorde);
+            recordeDisplay.textContent = recorde;
+            adicionarHistorico(`Novo recorde: ${recorde}! 🏆`);
+        }
+    }
+
+    resetBtn.addEventListener('click', () => {
+        pontos = 0;
+        pontosDisplay.textContent = pontos;
+        listaHistorico.innerHTML = '';
+        adicionarHistorico('Jogo resetado!');
+    })
+
+
     // Clique no emoji (ganha pontos)
     emoji.addEventListener('click', () => {
         emoji.classList.add('clicado');
         pontos += 5;
         pontosDisplay.textContent = pontos;
+
+        atualizarRecorde();
 
         const mensagem = mensagensZoeiras[Math.floor(Math.random() * mensagensZoeiras.length)];
         adicionarHistorico(`${mensagem} (${emoji.textContent})`);
@@ -59,13 +82,14 @@ function criarEmoji() {
             emoji.remove();
             pontos = Math.max(0, pontos - 1);
             pontosDisplay.textContent = pontos;
+            atualizarRecorde();
             adicionarHistorico(`Perdeu o emoji ${emoji.textContent}! 😜`);
         }
-    }, 700);
+    }, 2000);
 }
 
 // Criar emojis periodicamente
-setInterval(criarEmoji, 700);
+setInterval(criarEmoji, 2000);
 
 // Criar o primeiro emoji
 criarEmoji();
